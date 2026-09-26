@@ -1,99 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="theme-color" content="#060910" />
-<title>Student QR Database — Secure • Simple • Smart Student Records</title>
-<meta name="description" content="Student QR Database — manage and display student records for Ethical Hacking and Forex Trading courses. Scan a QR code to open a student profile instantly." />
-
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23060a10'/%3E%3Cpath d='M7 7h7v7H7zM18 7h7v7h-7zM7 18h7v7H7z' fill='%233b82f6'/%3E%3Crect x='18' y='18' width='7' height='7' rx='1' fill='%2322c55e'/%3E%3C/svg%3E" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/style.css" />
+  <meta charset="UTF-8">
+  <title>Attendance QR Code</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 40px; background: #0f172a; color: #fff; }
+    #qrcode { background: #fff; padding: 20px; display: inline-block; border-radius: 12px; }
+    h1 { margin-bottom: 30px; }
+    p { margin-top: 20px; color: #94a3b8; }
+  </style>
 </head>
 <body>
+  <h1>Scan to Mark Attendance</h1>
+  <div id="qrcode"></div>
+  <p>Ethical Hacking & Forex Trading</p>
 
-<!-- ================= BACKGROUND ================= -->
-<div class="bg-layer" aria-hidden="true">
-  <div class="bg-glow"></div>
-  <div class="bg-grid"></div>
-  <div class="bg-scan"></div>
-</div>
-
-<!-- ================= HEADER ================= -->
-<header class="topbar" id="topbar">
-  <div class="container topbar-inner">
-    <a href="#/" class="brand" aria-label="Student QR Database home">
-      <span class="brand-mark">
-        <svg viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M5 5h9v9H5z" fill="currentColor"/>
-          <path d="M18 5h9v9h-9z" fill="currentColor" opacity=".55"/>
-          <path d="M5 18h9v9H5z" fill="currentColor" opacity=".55"/>
-          <rect x="18" y="18" width="9" height="9" rx="1.5" fill="#22c55e"/>
-        </svg>
-      </span>
-      <span class="brand-text">
-        <strong>STUDENT QR</strong>
-        <small>DATABASE</small>
-      </span>
-    </a>
-
-    <nav class="nav" id="mainNav" aria-label="Main">
-      <a href="#/" data-nav="home">Home</a>
-      <a href="#/database/all" data-nav="database">Database</a>
-      <a href="#/scan" data-nav="scan">Scan QR</a>
-      <a href="#/admin" data-nav="admin">Admin</a>
-    </nav>
-
-    <div class="topbar-actions">
-      <a href="#/scan" class="btn btn-primary btn-sm hide-sm">Scan / Search</a>
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</header>
-
-<!-- ================= APP ================= -->
-<main id="app" class="app"></main>
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <span class="dot-live"></span>
-      <span>STUDENT QR DATABASE</span>
-    </div>
-    <p class="footer-note">Secure • Simple • Smart Student Records</p>
-    <div class="footer-links">
-      <a href="#/database/all">Database</a>
-      <a href="#/scan">Scan</a>
-      <a href="#/admin">Admin</a>
-    </div>
-  </div>
-  <div class="container footer-bottom">
-    <span>© <span id="year"></span> Student QR Database</span>
-    <span class="mono muted">v1.0.0 · client-side demo build</span>
-  </div>
-</footer>
-
-<!-- ================= OVERLAYS ================= -->
-<div id="modalRoot"></div>
-<div id="toastRoot" class="toast-root" aria-live="polite"></div>
-
-<!-- QR engine (primary) -->
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-<!-- QR engine (fallback) -->
-<script>
-  if (typeof window.QRCode === 'undefined' || typeof window.QRCode.toDataURL !== 'function') {
-    document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"><\/script>');
-  }
-</script>
-
-<script src="assets/js/data.js"></script>
-<script src="assets/js/app.js"></script>
+  <script>
+    const url = "https://yourusername.github.io/attendance-form/"; // <-- change this
+    QRCode.toCanvas(document.createElement('canvas'), url, { width: 300 }, function (err, canvas) {
+      if (err) console.error(err);
+      document.getElementById('qrcode').appendChild(canvas);
+    });
+  </script>
 </body>
 </html>
